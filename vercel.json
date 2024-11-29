@@ -5,7 +5,7 @@
         "src": "Library_Management/wsgi.py",
         "use":"@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.11.3" }
-        // "env": { "PG_CONFIG": "/usr/bin/pg_config" }
+        
     }],
 
     "routes": [
