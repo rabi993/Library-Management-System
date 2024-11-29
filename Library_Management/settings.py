@@ -38,7 +38,7 @@ ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
 INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
 
-    "corsheaders",
+    # "corsheaders",
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -59,7 +59,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+    # "corsheaders.middleware.CorsMiddleware",
 
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
