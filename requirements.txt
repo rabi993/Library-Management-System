@@ -1,46 +1,23 @@
-asgiref
-certifi
-crispy-bootstrap5
-distlib
-dj-database-url
-Django
-django-cors-headers
-django-crispy-forms
-django-email
-django-environ
-filelock
-packaging
-pillow
-pipenv
-platformdirs
+asgiref==3.8.1
+certifi==2024.8.30
+crispy-bootstrap5==2024.10
+distlib==0.3.8
+dj-database-url==2.3.0
+Django==5.1.1
+django-cors-headers==4.6.0
+django-crispy-forms==2.3
+django-email==0.1.10
+django-environ==0.11.2
+filelock==3.16.1
+packaging==24.1
+pillow==11.0.0
+pipenv==2024.1.0
+platformdirs==4.3.6
 psycopg2
 psycopg2-binary
-python-dotenv
-sqlparse
-typing_extensions
-tzdata
-virtualenv
-whitenoise
-
-# asgiref==3.8.1
-# certifi==2024.8.30
-# crispy-bootstrap5==2024.10
-# distlib==0.3.8
-# dj-database-url==2.3.0
-# Django==5.1.1
-# django-crispy-forms==2.3
-# django-email==0.1.10
-# django-environ==0.11.2
-# filelock==3.16.1
-# packaging==24.1
-# pillow==11.0.0
-# pipenv==2024.1.0
-# platformdirs==4.3.6
-# psycopg2==2.9.10
-# psycopg2-binary==2.9.10
-# python-dotenv==1.0.1
-# sqlparse==0.5.1
-# typing_extensions==4.12.2
-# tzdata==2024.2
-# virtualenv==20.26.6
-# whitenoise==6.8.2
+python-dotenv==1.0.1
+sqlparse==0.5.1
+typing_extensions==4.12.2
+tzdata==2024.2
+virtualenv==20.26.6
+whitenoise==6.8.2
