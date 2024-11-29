@@ -20,20 +20,20 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env("SECRET_KEY")
+# SECRET_KEY = env("SECRET_KEY")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-y8m+i#nwf3(3on+7)0kxux@$7$t3%xzi&!@o7&j0s+15p91ipa'
+SECRET_KEY = 'django-insecure-y8m+i#nwf3(3on+7)0kxux@$7$t3%xzi&!@o7&j0s+15p91ipa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = env.bool("DEBUG", default=False)
 
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 # ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
@@ -96,6 +96,7 @@ TEMPLATES = [
 ]
 
 # WSGI_APPLICATION = 'Library_Management.wsgi.application'
+# WSGI_APPLICATION = 'Library_Management.wsgi.app'
 WSGI_APPLICATION = 'Library_Management.wsgi.app'
 
 
@@ -198,9 +199,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = env("EMAIL")
-# EMAIL_HOST_USER = env("EMAIL", default="rabi.21.pust@gmail.com")
-
 EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
-
-# EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD", default="rabi@1233")
 
