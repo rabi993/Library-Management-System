@@ -141,65 +141,13 @@ def pass_change(request):
     return render(request, 'accounts/pass_change.html', {'form': form})
     
 
-# from django.views.generic import ListView
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from .models import BorrowItem
+from .models import BorrowItem
 
-# class BorrowListView(LoginRequiredMixin, ListView):
-#     model = BorrowItem
-#     template_name = 'accounts/borrow_list.html'
-#     context_object_name = 'borrow_items'
-
-#     def get_queryset(self):
-#         return BorrowItem.objects.filter(user=self.request.user)
-
-class BorrowListView(View):
-        template_name = 'accounts/borrow_list.html'
-
-        def get(self, request, category_slug=None):
-            form = UserUpdateForm(instance=request.user)
-            data = Book.objects.filter(l_user=request.user)
-            if category_slug is not None:
-                category = Category.objects.get(slug=category_slug)
-                data = Book.objects.filter(l_user=request.user, category=category)
-            categories = Category.objects.all()
-            cart = Cart.objects.filter(user=request.user).first()
-            account_balance = request.user.account.balance # Fetch the account balance
-
-            context = {
-                'form': form,
-                'data': data,
-                'category': categories,
-                'cart': cart,
-                'account_balance': account_balance,  # Pass balance to template
-                # 'cart_items': cart.items.all() if cart else [],
-            }
-            return render(request, self.template_name, context)
-
-        def post(self, request, category_slug=None):
-            form = UserUpdateForm(request.POST, instance=request.user)
-            data = Book.objects.filter(l_user=request.user)
-            categories = Category.objects.all()
-            cart = Cart.objects.filter(user=request.user).first()
-            account_balance = request.user.account.balance  # Fetch the account balance
-
-            if form.is_valid():
-                form.save()
-                return redirect('borrow_list')  # Redirect to the profile page after successful update
-
-            context = {
-                'form': form,
-                'data': data,
-                'category': categories,
-                'cart': cart,
-                'account_balance': account_balance,  # Pass balance to template
-            }
-            return render(request, self.template_name, context)
-
-# def borrow_list(request):
-#     user_items = BorrowItem.objects.filter(user=request.user)
+@login_required
+def borrow_list(request):
+    user_items = BorrowItem.objects.filter(user=request.user)
     
-#     return render(request, 'accounts/borrow_list.html', {'user_items': user_items})
+    return render(request, 'accounts/borrow_list.html', {'user_items': user_items})
 
 # def borrow_list(request, book_id):
 #     book = get_object_or_404(Book, id=book_id)
