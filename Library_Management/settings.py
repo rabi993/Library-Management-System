@@ -20,21 +20,21 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y8m+i#nwf3(3on+7)0kxux@$7$t3%xzi&!@o7&j0s+15p91ipa'
+# SECRET_KEY = 'django-insecure-y8m+i#nwf3(3on+7)0kxux@$7$t3%xzi&!@o7&j0s+15p91ipa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = env.bool("DEBUG", default=False)
+# DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
-# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+# ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 
 
@@ -95,9 +95,9 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'Library_Management.wsgi.application'
+WSGI_APPLICATION = 'Library_Management.wsgi.application'
 # WSGI_APPLICATION = 'Library_Management.wsgi.app'
-WSGI_APPLICATION = 'Library_Management.wsgi.app'
+# WSGI_APPLICATION = 'Library_Management.wsgi.app'
 
 
 # Database
