@@ -29,8 +29,8 @@ SECRET_KEY = env("SECRET_KEY")
 # SECRET_KEY = 'django-insecure-y8m+i#nwf3(3on+7)0kxux@$7$t3%xzi&!@o7&j0s+15p91ipa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = True
+# DEBUG = env.bool("DEBUG", default=False)
 
 
 # ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
@@ -95,9 +95,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Library_Management.wsgi.application'
-# WSGI_APPLICATION = 'Library_Management.wsgi.app'
-# WSGI_APPLICATION = 'Library_Management.wsgi.app'
+# WSGI_APPLICATION = 'Library_Management.wsgi.application'
+WSGI_APPLICATION = 'Library_Management.wsgi.app'
 
 
 # Database
