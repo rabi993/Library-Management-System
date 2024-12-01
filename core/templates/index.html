@@ -15,9 +15,9 @@
 
         <div class="flex justify-end w-full">
             {% if request.user.is_authenticated %}
-            <a href="{% url 'homepage' %}" class="bg-blue-900 text-white rounded-none hover:bg-white hover:text-blue-900 hover:border-blue-900 shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent">For Books</a>
+            <a href="{% url 'homepage' %}" class="bg-blue-900 text-white rounded  hover:border-transparent hover:text-gray-800 hover:bg-red-700 py-2 px-4 border border-gray-900 hover:border-transparent">For Books</a>
             {% else %}
-            <a href="{% url 'register' %}" class="bg-blue-900 text-white rounded-none hover:bg-white hover:text-blue-900 hover:border-blue-900 shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent">Register</a>
+            <a href="{% url 'register' %}" class="bg-blue-900 text-white rounded  hover:border-transparent hover:text-gray-800 hover:bg-red-700 py-2 px-4 border border-gray-900 hover:border-transparent">Register</a>
             {% endif %}
         </div>
         

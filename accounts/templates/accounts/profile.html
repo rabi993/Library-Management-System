@@ -10,14 +10,14 @@
     <p class="block sm:inline">{{ error }}</p>
 </div>
 {% endfor %} {% endif %}
-<div class="bg-white px-3 py-4 rounded-xl my-6">
+<div class="bg-white px-3 pt-2 pb-2 rounded-xl my-2">
 
-    <h4 class="font-bold text-3xl text-left pb-2">Account NO: {{request.user.account.account_no}}</h4>
-    <h1 class="font-bold text-3xl text-center ">Update Profile Information</h1>
+    <h6 class="font-bold text-xl text-left ">Account NO: {{request.user.account.account_no}}</h6>
+    <h3 class="font-bold text-2xl text-center ">Update Profile Information</h3>
     <div class="w-50 m-auto text-center  ">
-        <a style="background-color: #6495ED; " class='btn  mb-5  px-5 py-2 rounded' href="{% url 'pass_change' %}">Change Your password </a>
+        <a style="background-color: #6495ED; " class='btn   px-5 py-2 rounded' href="{% url 'pass_change' %}">Change Your password </a>
     </div>
-    <div class="w-full mt-5">
+    <div class="w-full mt-3">
         <form method="post" class="bg-white shadow-md rounded px-8  pb-8 mb-4">
             {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
             <div class="flex flex-wrap -mx-3 mb-6">
@@ -129,7 +129,7 @@
     </div>
 </div>
 
-<div style="background-color: black" class="d-flex flex-wrap px-5  pt-3 border border-5 rounded-4 border-dark p-2">
+{% comment %} <div style="background-color: black" class="d-flex flex-wrap px-5  pt-3 border border-5 rounded-4 border-dark p-2">
     
     <div  style="background-color: gray" class="col-12 border border-5 rounded-4 border-dark ">
         <h3 class="text-center">{{ user.first_name }} {{ user.last_name }}'s Borrow Book List</h3>
@@ -151,8 +151,7 @@
                                 <h6 >Category Name:  {{item.book.category.name}}</h6>
                                 <h6>Quantity: {{ item.quantity }}</h6>
                                 <a href="{% url 'detail_book' item.book.id %}"class="text-decoration-none btn btn-dark w-75  m-auto"> View Details</a> <br/>
-                                {% comment %} <a href="" class="btn btn-warning mt-2">Edit</a>
-                                <a href="" class="btn btn-danger mt-2">Detete</a> {% endcomment %}
+                                
                                 
                             </div>
                             
@@ -167,16 +166,16 @@
     </div>
     </div>
 <br/>
-<br/>
+<br/> {% endcomment %}
 
 <div style="background-color: black" class="d-flex flex-wrap px-5  pt-3 border border-5 rounded-4 border-dark p-2">
     
     <div  style="background-color: gray" class="col-12 border border-5 rounded-4 border-dark  pb-3">
-        <h3 class="text-center">{{ user.first_name }} {{ user.last_name }}'s Cart</h3>
-        <h4 class="text-center"> {{cart.items.all | length}} Results Found</h4>
+        <h4 class="text-center">{{ user.first_name }} {{ user.last_name }}'s Cart</h4>
+        <h5 class="text-center"> {{cart.items.all | length}} Results Found</h5>
         <hr/ class="w-50 bg-black m-auto ">
 
-        <table style="background-color: white" class="table-auto mx-auto w-full px-5   mt-8 border dark:border-neutral-500 ">
+        <table style="background-color: white; " class="table-auto mx-auto w-full px-5   mt-2 border dark:border-neutral-500 ">
             <thead class="bg-purple-900 text-white text-left">
               <tr>
                 <th class="px-4 py-2">Borrow_Date</th>
@@ -221,5 +220,5 @@
 <br/>
 <br/>
 <br/>
-<br/>
+
 {% endblock %}

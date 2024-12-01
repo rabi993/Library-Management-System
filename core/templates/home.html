@@ -6,8 +6,8 @@
 
 
 
-<div style="background-color: black" class="d-flex flex-wrap px-5  pt-3 border border-5 rounded-4 border-dark p-2 mb-5">
-    <div style="background-color: gray" class="col-12 border border-5 rounded-4 border-dark p-5">
+<div style="background-color: black" class="d-flex flex-wrap px-5 mt-2  pt-3 border border-5 rounded-4 border-dark p-2 mb-5">
+    <div style="background-color: gray" class="col-12 border border-5 rounded-4 border-dark py-2">
         <h2 class="text-center">Click The button for Category wise Filter</h2>
         <hr/ class="w-80 bg-black m-auto ">
         <br/>
@@ -26,7 +26,7 @@
           
     </div>
     <div  style="background-color: gray" class="col-12 border border-5 rounded-4 border-dark pt-3">
-        <h2 class="text-center"> {{data | length}} Results Found</h2>
+        <h4 class="text-center"> {{data | length}} Results Found</h4>
         <hr/ class="w-50 bg-black m-auto ">
         <div class="d-flex flex-wrap justify-content-center  pt-3">
 
@@ -51,7 +51,7 @@
                                 </h6 >Model:  {{book.title}}</>
                                 <h6 >Price:  {{book.Price}} Taka</h6>
                                 {% comment %} {% url 'detail_book' book.id %} {% endcomment %}
-                                <a href="{% url 'detail_book' book.id %} "class="text-decoration-none btn btn-dark w-50 m-auto"> View Details</a> 
+                                <a href="{% url 'detail_book' book.id %} "class="text-decoration-none btn btn-dark w-100 m-auto"> View Details</a> 
                                 
                             </div>
                     
@@ -64,7 +64,6 @@
 </div>
 <br/>
 <br/>
-<br/>
-<br/>
+
 
 {% endblock %}

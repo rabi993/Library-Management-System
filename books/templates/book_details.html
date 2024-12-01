@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="bookd m-2">
-        <h4 class="p3 m-3">Total Comments : {{comments| length}}</h4>
+        <h4 class="p3 m-3">Total Reviews : {{comments| length}}</h4>
 
             
         {% for comment in comments %}
@@ -49,18 +49,36 @@
             
         
     </div>
-    <div class="card my-3  ">
+    {% comment %} <div class="card my-3  ">
         <div class="card-body">
             <form method='post' style="width: 50%; margin : auto">
-                <h3>Add Comment </h3>
+                <h3 class="text-center">Add Review </h3>
                 {% csrf_token %}
                 {{comment_form | crispy }}
-                <button class='btn btn-warning'>Submit</button>
+                <button class='btn btn-warning'{% if not user_has_borrowed %}d-none{% endif %} >Submit</button>
+            </form>
+            {% if not user_has_borrowed %}
+            <p class="text-center  text-danger mt-2">You must borrow the book to add a Review </p>
+        {% endif %}
+        </div>
+    </div> {% endcomment %}
+    {% if user_has_borrowed %}
+    <div class="card my-3">
+        <div class="card-body">
+            <form method="post" style="width: 50%; margin: auto">
+                <h3>Add Review</h3>
+                {% csrf_token %}
+                {{ comment_form|crispy }}
+                <button class="btn btn-warning">Submit</button>
             </form>
         </div>
-      </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+    </div>
+    {% else %}
+    <p class="text-center text-2xl text-danger">You must borrow the book to add a Review.</p>
+    {% endif %}
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 {% endblock %}

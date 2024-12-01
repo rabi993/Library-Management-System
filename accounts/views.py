@@ -244,3 +244,87 @@ def return_item(request, cart_item_id):
     messages.success(request, "Item returned successfully. The amount has been added to your account.")
     
     return redirect('profile')  # Redirect to the user's profile page
+
+def return_item1(request, cart_item_id):
+    # Fetch the cart item
+    cart_item = get_object_or_404(CartItem, id=cart_item_id, cart__user=request.user)
+    # Increase the book's available quantity
+    book = cart_item.book
+    book.Available += cart_item.quantity
+    book.save()
+
+    # Calculate the total price of the returned item
+    total_price = Decimal(str(cart_item.price)) * cart_item.quantity
+
+    # Add the amount back to the user's account
+    user_account = request.user.account
+    user_account.balance += total_price
+    user_account.save()
+
+    # Record the transaction with type `RETURN_BOOK`
+    Transaction.objects.create(
+        account=user_account,
+        amount=total_price,
+        transaction_type=RETURN_BOOK,
+        balance_after_transaction=user_account.balance
+    )
+
+    # Delete the cart item
+    cart_item.delete()
+
+    # Notify the user
+    messages.success(request, "Item returned successfully. The amount has been added to your account.")
+    
+    return redirect('borrow_list')  # Redirect to the user's profile page
+
+
+
+from decimal import Decimal
+from transactions.constants import BORROW_BOOK
+from transactions.models import Transaction  # Import the transaction model and type
+
+def borrow_now1(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+
+    # Ensure the user has enough balance
+    user_account = request.user.account
+    if book.Available > 0:
+        if user_account.balance >= Decimal(str(book.Price)):  # Convert book price to Decimal
+            # Deduct the price of the book from the user's account balance
+            user_account.balance -= Decimal(str(book.Price))
+            user_account.save()
+
+            # Record the transaction with type `BORROW_BOOK`
+            Transaction.objects.create(
+                account=user_account,
+                amount=Decimal(str(book.Price)),
+                transaction_type=BORROW_BOOK,
+                balance_after_transaction=user_account.balance
+            )
+
+            # Decrease book availability
+            book.decrease_available()
+
+            # Get or create a cart for the user
+            cart, created = Cart.objects.get_or_create(user=request.user)
+
+            # Check if item is already in the cart
+            cart_item, created = CartItem.objects.get_or_create(cart=cart, book=book)
+
+            if created:
+                # If a new item is added, set its price
+                cart_item.price = book.Price
+            else:
+                # If the item already exists, increment quantity
+                cart_item.quantity += 1
+
+            # Save the updated cart item
+            cart_item.save()
+
+            messages.success(request, "book purchased successfully!")
+        else:
+            messages.error(request, "Insufficient balance to borrow this book.")
+    else:
+        messages.error(request, "book is not available.")
+
+    return redirect('borrow_list')

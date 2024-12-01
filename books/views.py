@@ -101,8 +101,15 @@ class DetailBookView(DetailView):
         comments = post.comments.all()
         comment_form = forms.CommentForm()
         
+        user_has_borrowed = (
+            CartItem.objects.filter(cart__user=self.request.user, book=post).exists()
+            if self.request.user.is_authenticated
+            else False
+        )
+
         context['comments'] = comments
-        context['comment_form'] = comment_form
+        context['comment_form'] = comment_form if user_has_borrowed else None
+        context['user_has_borrowed'] = user_has_borrowed
         return context
 
 from decimal import Decimal
